@@ -1,7 +1,7 @@
 ;; Copyright (c) Vijay Mathew Pandyalakal <vijay.the.lisper@gmail.com>. All rights reserved.
 ;; See the COPYING file for licensing terms.
 
-(ns ^{:doc "A micro actor library."
+(ns ^{:doc "A tiny actor library."
       :author "Vijay Mathew Pandyalakal"}
   cljact.core
   (:require [clojure.core.match :refer [match]])
