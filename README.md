@@ -1,4 +1,4 @@
-A tiny library for concurrent computing with actors and asynchronous messaging.
+A tiny Clojure library for concurrent computing with actors and asynchronous messaging.
 
 ## Example Usage
 
