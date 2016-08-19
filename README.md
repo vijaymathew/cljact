@@ -2,12 +2,11 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 
 ## Example Usage
 
-```
+```clojure
 (use '[cljact.core])
 
 (defact a1
-  "An actor that subtracts two numbers.
-   Receives a message from `sender` and sends back the difference of `x` and `y`."
+  "Receive a message from `sender` and send back the difference of `x` and `y`."
   [sender x y] (sender [:result (- x y)]))
 
 (defact a2
@@ -22,7 +21,7 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 ;;-> -100
 ```
 
-```
+```clojure
 ;; An actor can choose to use multi-methods instead of patterns.
 (defmulti calc (fn [args] (:rator args)))
 (defmethod calc :add [args] ((:sender args) (apply + (:rands args))))
@@ -45,7 +44,7 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 ;;-> -10
 ```
 
-```
+```clojure
 ;; Shutdown the actor subsystem. 
 (shutdown)
 ```
