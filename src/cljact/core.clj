@@ -29,20 +29,16 @@
        (let [msg-q# (ConcurrentLinkedQueue.)
              ~(symbol 'self) (atom nil)
              callback# (if ~multi?
-                         (fn [m2#]
-                           (~(symbol hd) m2#))
-                         (fn [m3#]
-                           (match m3# ~@tl)))
+                         (fn [m2#] (~(symbol hd) m2#))
+                         (fn [m3#] (match m3# ~@tl)))
              handler# (fn [cont#]
                         (if-let [m# (.poll msg-q#)]
                           (do (callback# m#)
-                              (when (.peek msg-q#)
-                                (schedule (cont# cont#))))
+                              (when (.peek msg-q#) (schedule (cont# cont#))))
                           (Thread/yield)))
              adder# (fn [msg#] (let [schd# (.peek msg-q#)]
                                  (.add msg-q# msg#)
-                                 (when-not schd#
-                                   (schedule (handler# handler#)))
+                                 (when-not schd# (schedule (handler# handler#)))
                                  nil))]
          (reset! ~(symbol 'self) adder#)
          adder#))))
