@@ -51,11 +51,12 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 ```clojure
 ;; An actor can trigger a timeout handler if no messages are received
 ;; for a set duration. Durations are specified with millisecond precision.
+;; In the following program, if no message is send to the actor `t1` within 5 seconds, 
+;; the text "timeout!" will be printed.
 (defact t1
   "Echo the message to stdout, print an alert on timeout."
   {:timeout {:after 5000 :do (println "timeout in t1!")}}
   #(println %))
-;; If no message if send to `t1` in 5 seconds, the message "timeout!" will be printed.
 
 ;; By default, the timeout handler is rescheduled. To prevent this, set the loop? option
 ;; to false.
@@ -74,7 +75,7 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 
 ```clojure
 ;; Actors are first-class and are created using the `act` special form. The atom `self` gets bound to the
-;; actor object.
+;; current actor object.
 (defact adder
   "Add two numbers and send the result back to the client actor."
   #(match % [from [x y]] (from {:result (+ x y)})))
