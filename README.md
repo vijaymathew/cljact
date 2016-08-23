@@ -52,7 +52,7 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 ;; An actor can trigger a timeout handler if no messages are received
 ;; for a set duration. Durations are specified with millisecond precision.
 ;; In the following program, if no message is send to the actor `t1` within 5 seconds, 
-;; the text "timeout!" will be printed.
+;; a textual warning is printed.
 (defact t1
   "Echo the message to stdout, print an alert on timeout."
   {:timeout {:after 5000 :do (println "timeout in t1!")}}
