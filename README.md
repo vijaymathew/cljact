@@ -12,11 +12,9 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 
 (defact subtractor-client
   "Send two numbers to `a1`. Get back the result in another message and print it."
-  (fn [msg]
-    (println @self)
-    (match msg
+  #(match %
       [x y] (subtractor [@self x y])
-      [x] (println x))))
+      [x] (println x)))
 
 (subtractor-client [100 20])
 ;;-> 80
