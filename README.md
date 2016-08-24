@@ -3,8 +3,9 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 ## Example Usage
 
 ```clojure
-(use '[cljact.core])
-(require '[clojure.core.match :refer [match]])
+(require
+  '[cljact.core :refer [defact act]]
+  '[clojure.core.match :refer [match]])
 
 (defact subtractor
   "Receive a message from `sender` and send back the difference of `x` and `y`."
@@ -35,11 +36,10 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 
 (defact calculator-client
   "A proxy for `calculator`."
-  (fn [msg]
-    (match msg
-      [:add x y] (calculator {:sender @self :rator :add :rands [x y]})
-      [:sub x y] (calculator {:sender @self :rator :sub :rands [x y]})
-      result (println result))))
+  #(match %
+     [:add x y] (calculator {:sender @self :rator :add :rands [x y]})
+     [:sub x y] (calculator {:sender @self :rator :sub :rands [x y]})
+     result (println result)))
 
 (calculator-client [:add 10 100])
 ;;-> 110
@@ -96,5 +96,5 @@ A tiny Clojure library for concurrent computing with actors and asynchronous mes
 
 ```clojure
 ;; Shutdown the actor subsystem. 
-(shutdown)
+(cljact.core/shutdown)
 ```

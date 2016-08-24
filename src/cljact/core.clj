@@ -19,9 +19,10 @@
         msg-handler (if options (rest pat-disp) pat-disp)
         [timeout-ms timeout-handler reschedule-timer?]
         (when options (let [to (:timeout options)]
-                        [(:after to) (:do to) (if (contains? to :loop?)
-                                                (:loop? to)
-                                                true)]))]
+                        [(:after to) (:do to)
+                         (if (contains? to :loop?)
+                           (:loop? to)
+                           true)]))]
     `(let [msg-q# (ConcurrentLinkedQueue.)
            ~(symbol 'self) (atom nil)
            running# (atom true)
