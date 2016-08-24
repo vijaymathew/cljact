@@ -1,0 +1,4 @@
+ * `act` to return a map of functions, identified by these keys [:async :sync :block].
+ * handle exceptions thrown by the message handler.
+ * facility to link actors together, exceptions and reason passed to `quit` are send to linked actors.
+ * customization of scheduler and message queue implementations.
