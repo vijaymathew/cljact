@@ -92,6 +92,8 @@ A tiny Clojure library for concurrent computing with light-weight actors and asy
   "Print current time. Send the message [:stop] to stop the clock."
   {:timeout {:after 1000 :do (println (System/currentTimeMillis))}}
   #(when (= % :stop) (quit)))
+
+;; `(clock :stop)` will stop the clock.
 ```
 
 ```clojure

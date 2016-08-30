@@ -28,7 +28,7 @@
            msg-q# ~(if options
                      (or (:queue options) (ConcurrentLinkedQueue.))
                      (ConcurrentLinkedQueue.))
-           exec# ~(if options (or (:exec options) 'root-exec) 'root-exec)
+           exec# ~(if options (or (:exec options) 'cljact.core/root-exec) 'cljact.core/root-exec)
            links# (atom [])
            ~(symbol 'self) (atom nil)
            notify-links# (fn [reason# ex#]
