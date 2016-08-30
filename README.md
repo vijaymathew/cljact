@@ -95,20 +95,20 @@ A tiny Clojure library for concurrent computing with light-weight actors and asy
 ```
 
 ```clojure
-;; An actor can receive four special messages `:sync`, `:async`, `:linker` and `:quit`.
+;; An actor can receive four special messages :sync, :async, :linker and :quit.
 ;;
-;; `:sync` returns a function that invoke the message handler in a blocking call.
+;; :sync returns a function that invoke the message handler in a blocking call.
 ;;
-;; `:async` returns a function that invoke the message handler asynchronously. A `future`
+;; :async returns a function that invoke the message handler asynchronously. A `future`
 ;; is returned that can later return the result of the computation.
 ;;
-;; `:quit` will remove the actor from the scheduler so it stops responding to all
+;; :quit will remove the actor from the scheduler so it stops responding to all
 ;; asynchronous messages.
 ;;
-;; `:linker` returns a function that can be called to link and unlink other actors to
+;; :linker returns a function that can be called to link and unlink other actors to
 ;; monitor the status of this actor.
 
-;; Following program demonstrates `:sync`, `:async` and `:quit`.
+;; The following program demonstrates :sync, :async and :quit.
 (def counter
   "An actor with changing state."
   (let [count (atom 0)]
