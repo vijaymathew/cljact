@@ -71,10 +71,9 @@
                       :sync act-blocking#
                       :linker linker#
                       :quit (~(symbol 'quit))
-                      (let [schd# (.peek msg-q#)]
+                      (do
                         (.add msg-q# msg#)
-                        (when-not schd#
-                          (when @running# (schedule exec# #(handler# handler#))))
+                        (when @running# (schedule exec# #(handler# handler#)))
                         msg#)))]
        (reset! ~(symbol 'self) actor#)
        (when to-handler#
