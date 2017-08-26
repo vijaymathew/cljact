@@ -1,5 +1,5 @@
 A tiny Clojure library for concurrent computing with light-weight actors and asynchronous messaging. 
-The main objective of the project is to implement a practical actor system in less than 100 lines of code :-)
+The main objective of the project is to implement a practical actor system in less than 100 lines of code.
 
 ## Example Usage
 
